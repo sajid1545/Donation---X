@@ -14,7 +14,9 @@ const Header = () => {
 				<Link to="/add-event">Events</Link>
 			</li>
 			<li className="font-semibold">
-				<Link to="/">Blogs</Link>
+				<Link to="/login">
+					<span className=''>Login</span>
+				</Link>
 			</li>
 		</>
 	);
@@ -49,7 +51,6 @@ const Header = () => {
 				</div>
 				<div className="navbar-end hidden lg:flex">
 					<ul className="menu menu-horizontal p-0">{menuItems}</ul>
-					<a className="btn">Get started</a>
 				</div>
 			</div>
 		</div>
