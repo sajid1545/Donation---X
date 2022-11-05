@@ -7,6 +7,8 @@ import DonationCard from './DonationCard';
 const Donations = () => {
 	const [events, setEvents] = useState([]);
 
+
+
 	useEffect(() => {
 		fetch('http://localhost:3000/events')
 			.then((res) => res.json())
