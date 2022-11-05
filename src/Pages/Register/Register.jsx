@@ -1,17 +1,27 @@
 import React from 'react';
 import { useContext } from 'react';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Register = () => {
-	const { createUser } = useContext(AuthContext);
+	const { createUser, updateUsersProfile } = useContext(AuthContext);
 
 	const handleRegister = (event) => {
 		event.preventDefault();
 		const form = event.target;
 		const name = form.name.value;
 		const email = form.email.value;
+		const password = form.password.value;
 		const date = form.date.value;
-		console.log(name, email, date);
+
+		createUser(email, password)
+			.then((result) => {
+				const user = result.user;
+				updateUsersProfile(name);
+				toast.success('Registered user successfully');
+				console.log(user);
+			})
+			.catch((err) => console.error(err));
 	};
 
 	return (
@@ -43,6 +53,17 @@ const Register = () => {
 					</div>
 					<div className="space-y-1 text-sm">
 						<label htmlFor="password" className="block dark:text-gray-400">
+							Password
+						</label>
+						<input
+							type="password"
+							name="password"
+							placeholder="Password"
+							className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+						/>
+					</div>
+					<div className="space-y-1 text-sm">
+						<label htmlFor="password" className="block dark:text-gray-400">
 							Date
 						</label>
 						<input
@@ -52,7 +73,9 @@ const Register = () => {
 						/>
 					</div>
 
-					<button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">
+					<button
+						type="submit"
+						className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">
 						Register
 					</button>
 				</form>

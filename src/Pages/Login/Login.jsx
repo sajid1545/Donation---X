@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
+import { Link, useLocation, useNavigation } from 'react-router-dom';
 
 const Login = () => {
+	const { login } = useContext(AuthContext);
+
+	const location = useLocation();
+	const navigate = useNavigation();
+
 	const handleLogin = (event) => {
 		event.preventDefault();
 		const form = event.target;
 		const email = form.email.value;
-        const password = form.password.value;
-        console.log(email,password);
+		const password = form.password.value;
+
+		login(email, password)
+			.then((result) => {
+				const user = result.user;
+				toast.success('Successfully logged in');
+			})
+			.catch((err) => {
+				console.log(err);
+				toast.error(err.message);
+			});
 	};
 
 	return (
@@ -53,9 +70,9 @@ const Login = () => {
 				</div>
 				<p className="text-xs text-center sm:px-6 dark:text-gray-400">
 					Don't have an account?
-					<a rel="noopener noreferrer" href="#" className="underline dark:text-gray-100">
+					<Link to={'/register'} className="underline dark:text-gray-100">
 						Sign up
-					</a>
+					</Link>
 				</p>
 			</div>
 		</div>

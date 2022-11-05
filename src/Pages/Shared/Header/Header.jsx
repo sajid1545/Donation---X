@@ -1,23 +1,50 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const Header = () => {
+	const { user, logOut } = useContext(AuthContext);
+
+
 	const menuItems = (
 		<>
 			<li className="font-semibold">
-				<Link to="/">Home</Link>
-			</li>
-			<li className="font-semibold">
-				<Link to="/">Donation</Link>
-			</li>
-			<li className="font-semibold">
 				<Link to="/add-event">Events</Link>
 			</li>
-			<li className="font-semibold">
-				<Link to="/login">
-					<span className=''>Login</span>
-				</Link>
-			</li>
+			{user?.uid ? (
+				<>
+					<li className="font-semibold">
+						<Link to="/register">
+							<span className="">Register</span>
+						</Link>
+					</li>
+					<li className="font-semibold">
+						<Link to="/admin">
+							<span className="">Admin</span>
+						</Link>
+					</li>
+					<li className="font-semibold">
+						<Link>
+							<button onClick={logOut} className="">
+								LogOut
+							</button>
+						</Link>
+					</li>
+					<li className="font-bold">
+						<Link to="/">
+							<span className="">{user?.displayName}</span>
+						</Link>
+					</li>
+				</>
+			) : (
+				<>
+					<li className="font-semibold">
+						<Link to="/login">
+							<span className="">Login</span>
+						</Link>
+					</li>
+				</>
+			)}
 		</>
 	);
 
@@ -47,7 +74,7 @@ const Header = () => {
 							{menuItems}
 						</ul>
 					</div>
-					<a className="btn btn-ghost normal-case text-xl">Donation-X</a>
+					<Link to={'/'} className="btn btn-ghost normal-case text-xl">Donation-X</Link>
 				</div>
 				<div className="navbar-end hidden lg:flex">
 					<ul className="menu menu-horizontal p-0">{menuItems}</ul>
