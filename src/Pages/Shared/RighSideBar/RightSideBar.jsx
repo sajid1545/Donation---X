@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 const RightSideBar = () => {
 	return (
 		<div>
-			<div className="drawer drawer-mobile mt-10 ">
+			<div className="drawer drawer-mobile">
 				<div className="drawer-side">
 					<label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 					<ul className="menu p-4 w-80 h-full bg-slate-700 text-white font-bold text-2xl space-y-5 ">
@@ -16,7 +16,7 @@ const RightSideBar = () => {
 							</NavLink>
 						</span>
 						<span>
-							<NavLink>Sidebar Item 2</NavLink>
+							<NavLink>Registered - <br /> Volunteers</NavLink>
 						</span>
 					</ul>
 				</div>

@@ -3,6 +3,7 @@ import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { setAuthToken } from '../../api/Auth';
 
 const Login = () => {
 	const { login } = useContext(AuthContext);
@@ -22,9 +23,10 @@ const Login = () => {
 			.then((result) => {
 				const user = result.user;
 				const currentUser = {
-					email: user?.email,
+					email: user.email,
 				};
 
+				// get jwt token
 				fetch('http://localhost:3000/jwt', {
 					method: 'POST',
 					headers: {
@@ -34,10 +36,10 @@ const Login = () => {
 				})
 					.then((res) => res.json())
 					.then((data) => {
-						console.log(data.token);
-						toast.success('Successfully logged in');
+						console.log(data);
 						localStorage.setItem('donate-token', data.token);
 						navigate(from, { replace: true });
+						toast.success('Successfully logged in');
 					});
 			})
 			.catch((err) => {

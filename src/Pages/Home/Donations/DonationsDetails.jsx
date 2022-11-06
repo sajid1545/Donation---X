@@ -10,7 +10,7 @@ const DonationsDetails = () => {
 
 	const { user } = useContext(AuthContext);
 
-	const { eventName, photoURL, date, description ,_id} = event;
+	const { eventName, photoURL, date, description, _id } = event;
 
 	const selectedEvent = {
 		eventName,
@@ -25,6 +25,7 @@ const DonationsDetails = () => {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
+				authorization: `Bearer ${localStorage.getItem('donate-token')}`,
 			},
 			body: JSON.stringify(selectedEvent),
 		})

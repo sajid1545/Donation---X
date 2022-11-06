@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
 import { Audio } from 'react-loader-spinner';
 
-const PrivateRoutes = ({ children }) => {
+const PrivateAdminRoute = ({ children }) => {
 	const { user, loading } = useContext(AuthContext);
 	const location = useLocation();
 
@@ -23,11 +24,12 @@ const PrivateRoutes = ({ children }) => {
 		);
 	}
 
-	if (user) {
+	if (user?.email === 'sajid1@gmail.com') {
 		return children;
+	} else {
+		toast.error('Only admin can access this');
+		return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 	}
-
-	return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
 
-export default PrivateRoutes;
+export default PrivateAdminRoute;

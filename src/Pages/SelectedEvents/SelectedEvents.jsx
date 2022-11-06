@@ -30,6 +30,9 @@ const SelectedEvents = () => {
 		if (agree) {
 			fetch(`http://localhost:3000/selected-events/${id}`, {
 				method: 'DELETE',
+				headers: {
+					authorization: `Bearer ${localStorage.getItem('donate-token')}`,
+				},
 			})
 				.then((res) => res.json())
 				.then((data) => {

@@ -12,26 +12,24 @@ const Header = () => {
 
 	const menuItems = (
 		<>
-			
 			{user?.uid ? (
 				<>
-					<li className="font-semibold">
-						<Link>
-							<button onClick={handleLogout} className="">
-								LogOut
-							</button>
-						</Link>
-					</li>
+					<button onClick={handleLogout} className="font-semibold">
+						<Link>LogOut</Link>
+					</button>
 					<li className="font-bold">
 						<Link to="/selected-events">
 							<span className="">{user?.displayName}</span>
 						</Link>
 					</li>
-					<li className="font-semibold">
-						<Link to="/admin">
-							<span className="">Admin</span>
-						</Link>
-					</li>
+
+					<Link to="/admin">
+						<button
+							type="button"
+							className="py-2 px-4  bg-gradient-to-r from-green-400 to-blue-500 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 ">
+							Admin
+						</button>
+					</Link>
 				</>
 			) : (
 				<>

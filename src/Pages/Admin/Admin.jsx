@@ -5,14 +5,16 @@ import RightSideBar from '../Shared/RighSideBar/RightSideBar';
 
 const Admin = () => {
 	return (
-        <div>
-            <Header/>
-			<div className="grid grid-cols-12 gap-10 mt-10">
+		<div>
+			<div className="border-b-8 p-2 text-xl">
+				<Header />
+			</div>
+			<div className="grid grid-cols-12 gap-7">
 				<div className="col-span-2">
 					<RightSideBar />
 				</div>
 
-				<div className="col-span-9">
+				<div className="col-span-9 mt-10">
 					<Outlet />
 				</div>
 			</div>

@@ -10,6 +10,7 @@ import RightSideBar from '../../Pages/Shared/RighSideBar/RightSideBar';
 import PrivateRoutes from '../PrivateRoutes/PrivateRoutes';
 import AddEvent from './../../Pages/AddEvent/AddEvent';
 import DonationsDetails from './../../Pages/Home/Donations/DonationsDetails';
+import PrivateAdminRoute from './../PrivateAdminRoute/PrivateAdminRoute';
 
 export const router = createBrowserRouter([
 	{
@@ -55,7 +56,11 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/update-event/:id',
-				element: <UpdateDonationEvent />,
+				element: (
+					<PrivateAdminRoute>
+						<UpdateDonationEvent />
+					</PrivateAdminRoute>
+				),
 				loader: ({ params }) => fetch(`http://localhost:3000/events/${params.id}`),
 			},
 		],
@@ -63,9 +68,9 @@ export const router = createBrowserRouter([
 	{
 		path: '/admin',
 		element: (
-			<PrivateRoutes>
+			<PrivateAdminRoute>
 				<Admin />
-			</PrivateRoutes>
+			</PrivateAdminRoute>
 		),
 		children: [
 			{

@@ -1,10 +1,16 @@
 import React from 'react';
 import { useContext } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { setAuthToken } from '../../api/Auth';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Register = () => {
 	const { createUser, updateUsersProfile } = useContext(AuthContext);
+
+	const navigate = useNavigate();
+	const location = useLocation();
+	const from = location.state?.from?.pathname || '/';
 
 	const handleRegister = (event) => {
 		event.preventDefault();
@@ -14,12 +20,39 @@ const Register = () => {
 		const password = form.password.value;
 		const date = form.date.value;
 
+		const volunteer = {
+			name,
+			email,
+			date,
+		};
+
 		createUser(email, password)
 			.then((result) => {
 				const user = result.user;
 				updateUsersProfile(name);
-				toast.success('Registered user successfully');
-				console.log(user);
+				const currentUser = {
+					email: user?.email,
+				};
+				// toast.success('Registered user successfully');
+				// navigate(from, { replace: true });
+
+				fetch('http://localhost:3000/volunteers', {
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json',
+					},
+					body: JSON.stringify(volunteer),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						if (data.acknowledged) {
+							setAuthToken(currentUser);
+
+							toast.success('Registered user successfully');
+							// navigate(from, { replace: true });
+						}
+						console.log(data);
+					});
 			})
 			.catch((err) => console.error(err));
 	};

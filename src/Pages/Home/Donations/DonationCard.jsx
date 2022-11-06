@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
 
 const DonationCard = ({ event }) => {
     const { eventName, photoURL,_id} = event;
