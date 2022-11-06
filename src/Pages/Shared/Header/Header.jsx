@@ -5,7 +5,6 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 const Header = () => {
 	const { user, logOut } = useContext(AuthContext);
 
-
 	const menuItems = (
 		<>
 			<li className="font-semibold">
@@ -31,7 +30,7 @@ const Header = () => {
 						</Link>
 					</li>
 					<li className="font-bold">
-						<Link to="/">
+						<Link to="/selected-events">
 							<span className="">{user?.displayName}</span>
 						</Link>
 					</li>
@@ -74,7 +73,9 @@ const Header = () => {
 							{menuItems}
 						</ul>
 					</div>
-					<Link to={'/'} className="btn btn-ghost normal-case text-xl">Donation-X</Link>
+					<Link to={'/'} className="btn btn-ghost normal-case text-xl">
+						Donation-X
+					</Link>
 				</div>
 				<div className="navbar-end hidden lg:flex">
 					<ul className="menu menu-horizontal p-0">{menuItems}</ul>

@@ -7,6 +7,8 @@ import DonationCard from './DonationCard';
 const Donations = () => {
 	const [events, setEvents] = useState([]);
 
+	const [page,setPage] = useState(0);
+	const [size,setSize] = useState(10);
 
 
 	useEffect(() => {

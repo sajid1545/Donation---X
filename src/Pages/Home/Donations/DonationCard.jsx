@@ -5,21 +5,14 @@ import Swal from 'sweetalert2';
 const DonationCard = ({ event }) => {
     const { eventName, photoURL,_id} = event;
     
-    // Swal.fire(
-    //     'Congratulations',
-    //     `You have successfully selected the event ${eventName}`,
-    //     'success'
-    // );
+   
 
 
-	const handleAddEvent = () => {
-		
-	};
+	
 
 	return (
 		<Link to={`/eventDetails/${_id}`} >
 			<span
-				onClick={handleAddEvent}
 				className="group relative block bg-black h-[300px] cursor-pointer hover:scale-105 duration-500 hover:shadow-lg hover:shadow-yellow-600 rounded-2xl tooltip tooltip-info mt-5"
 				data-tip={`select ${eventName}`}>
 				<img
