@@ -44,7 +44,7 @@ const Donations = () => {
 				{[...Array(pages).keys()].map((number) => (
 					<button
 						key={number}
-						className={`px-12 btn-primary btn text-white font-semibold ${
+						className={` inline-flex items-center justify-center w-8 h-8 text-sm border rounded shadow-md dark:bg-gray-900 dark:border-gray-800 text-white font-semibold ${
 							page === number ? 'bg-yellow-700 font-bold text-3xl' : ''
 						}`}
 						onClick={() => setPage(number)}>

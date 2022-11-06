@@ -48,7 +48,7 @@ const Register = () => {
 							setAuthToken(currentUser);
 
 							toast.success('Registered user successfully');
-							// navigate(from, { replace: true });
+							navigate(from, { replace: true });
 						}
 						console.log(data);
 					});
