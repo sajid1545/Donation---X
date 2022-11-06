@@ -16,7 +16,11 @@ const RightSideBar = () => {
 							</NavLink>
 						</span>
 						<span>
-							<NavLink>Registered - <br /> Volunteers</NavLink>
+							<NavLink
+								className={({ isActive }) => (isActive ? 'text-red-500' : undefined)}
+								to={'/admin/volunteers'}>
+								Volunteers
+							</NavLink>
 						</span>
 					</ul>
 				</div>

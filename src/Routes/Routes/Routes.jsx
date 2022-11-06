@@ -7,6 +7,7 @@ import Login from '../../Pages/Login/Login';
 import Register from '../../Pages/Register/Register';
 import SelectedEvents from '../../Pages/SelectedEvents/SelectedEvents';
 import RightSideBar from '../../Pages/Shared/RighSideBar/RightSideBar';
+import VolunteerList from '../../Pages/VolunterrList/VolunteerList';
 import PrivateRoutes from '../PrivateRoutes/PrivateRoutes';
 import AddEvent from './../../Pages/AddEvent/AddEvent';
 import DonationsDetails from './../../Pages/Home/Donations/DonationsDetails';
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
 			{
 				path: '/admin/add-event',
 				element: <AddEvent />,
+			},
+			{
+				path: '/admin/volunteers',
+				element: <VolunteerList />,
 			},
 		],
 	},

@@ -13,24 +13,24 @@ const Header = () => {
 	const menuItems = (
 		<>
 			{user?.uid ? (
-				<>
-					<button onClick={handleLogout} className="font-semibold">
+				<div className="lg:flex gap-10 space-y-5 md:space-y-0">
+					<button onClick={handleLogout} className="font-semibold hover:px-4 duration-500">
 						<Link>LogOut</Link>
 					</button>
-					<li className="font-bold">
+					<button className="font-bold hover:px-4 duration-500 ">
 						<Link to="/selected-events">
 							<span className="">{user?.displayName}</span>
 						</Link>
-					</li>
+					</button>
 
 					<Link to="/admin">
 						<button
 							type="button"
-							className="py-2 px-4  bg-gradient-to-r from-green-400 to-blue-500 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 ">
+							className="py-2 rounded-lg px-7 hover:scale-110 bg-gradient-to-r from-green-400 to-blue-500 text-white w-full transition ease-in duration-700 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 mt-4 md:mt-0 ">
 							Admin
 						</button>
 					</Link>
-				</>
+				</div>
 			) : (
 				<>
 					<li className="font-semibold">
