@@ -6,7 +6,6 @@ import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login';
 import Register from '../../Pages/Register/Register';
 import SelectedEvents from '../../Pages/SelectedEvents/SelectedEvents';
-import RightSideBar from '../../Pages/Shared/RighSideBar/RightSideBar';
 import VolunteerList from '../../Pages/VolunterrList/VolunteerList';
 import PrivateRoutes from '../PrivateRoutes/PrivateRoutes';
 import AddEvent from './../../Pages/AddEvent/AddEvent';
@@ -45,7 +44,7 @@ export const router = createBrowserRouter([
 						<DonationsDetails />
 					</PrivateRoutes>
 				),
-				loader: ({ params }) => fetch(`http://localhost:3000/events/${params.id}`),
+				loader: ({ params }) => fetch(`https://donation-x-server.vercel.app/events/${params.id}`),
 			},
 			{
 				path: '/selected-events',
@@ -62,7 +61,7 @@ export const router = createBrowserRouter([
 						<UpdateDonationEvent />
 					</PrivateAdminRoute>
 				),
-				loader: ({ params }) => fetch(`http://localhost:3000/events/${params.id}`),
+				loader: ({ params }) => fetch(`https://donation-x-server.vercel.app/events/${params.id}`),
 			},
 		],
 	},

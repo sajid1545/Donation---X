@@ -13,11 +13,11 @@ const Header = () => {
 	const menuItems = (
 		<>
 			{user?.uid ? (
-				<div className="lg:flex gap-10 space-y-5 md:space-y-0">
-					<button onClick={handleLogout} className="font-semibold hover:px-4 duration-500">
+				<>
+					<button onClick={handleLogout} className="font-semibold">
 						<Link>LogOut</Link>
 					</button>
-					<button className="font-bold hover:px-4 duration-500 ">
+					<button className="font-bold">
 						<Link to="/selected-events">
 							<span className="">{user?.displayName}</span>
 						</Link>
@@ -26,11 +26,11 @@ const Header = () => {
 					<Link to="/admin">
 						<button
 							type="button"
-							className="py-2 rounded-lg px-7 hover:scale-110 bg-gradient-to-r from-green-400 to-blue-500 text-white w-full transition ease-in duration-700 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 mt-4 md:mt-0 ">
+							className="py-2 px-4  bg-gradient-to-r from-green-400 to-blue-500 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 ">
 							Admin
 						</button>
 					</Link>
-				</div>
+				</>
 			) : (
 				<>
 					<li className="font-semibold">
@@ -65,7 +65,7 @@ const Header = () => {
 						</label>
 						<ul
 							tabIndex={0}
-							className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+							className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 ">
 							{menuItems}
 						</ul>
 					</div>
@@ -74,7 +74,7 @@ const Header = () => {
 					</Link>
 				</div>
 				<div className="navbar-end hidden lg:flex">
-					<ul className="menu menu-horizontal p-0">{menuItems}</ul>
+					<ul className="menu menu-horizontal p-0 space-x-8">{menuItems}</ul>
 				</div>
 			</div>
 		</div>

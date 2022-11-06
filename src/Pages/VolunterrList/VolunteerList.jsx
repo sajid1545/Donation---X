@@ -1,13 +1,12 @@
-import { info } from 'daisyui/src/colors/colorNames';
 import React, { useEffect, useState } from 'react';
-import VolunteerTable from './VolunteerTable';
 import { toast } from 'react-toastify';
+import VolunteerTable from './VolunteerTable';
 
 const VolunteerList = () => {
 	const [volunteers, setVolunteers] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:3000/volunteers', {
+		fetch('https://donation-x-server.vercel.app/volunteers', {
 			headers: {
 				authorization: `Bearer ${localStorage.getItem('donate-token')}`,
 			},
@@ -20,7 +19,7 @@ const VolunteerList = () => {
 		const agree = window.confirm('Are you sure you want to delete this user');
 
 		if (agree) {
-			fetch(`http://localhost:3000/volunteers/${_id}`, {
+			fetch(`https://donation-x-server.vercel.app/volunteers/${_id}`, {
 				method: 'DELETE',
 			})
 				.then((res) => res.json())

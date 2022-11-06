@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import SelectedEventCard from './SelectedEventCard';
-import { toast } from 'react-toastify';
 
 const SelectedEvents = () => {
 	const [selectedEvents, setSelectedEvents] = useState([]);
 	const { user, logOut } = useContext(AuthContext);
 
 	useEffect(() => {
-		fetch(`http://localhost:3000/selected-events?email=${user?.email}`, {
+		fetch(`https://donation-x-server.vercel.app/selected-events?email=${user?.email}`, {
 			headers: {
 				authorization: `Bearer ${localStorage.getItem('donate-token')}`,
 			},
@@ -28,7 +28,7 @@ const SelectedEvents = () => {
 		const agree = window.confirm('Are you sure you want to delete');
 
 		if (agree) {
-			fetch(`http://localhost:3000/selected-events/${id}`, {
+			fetch(`https://donation-x-server.vercel.app/selected-events/${id}`, {
 				method: 'DELETE',
 				headers: {
 					authorization: `Bearer ${localStorage.getItem('donate-token')}`,

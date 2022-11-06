@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -24,7 +24,7 @@ const UpdateDonationEvent = () => {
 			description,
 		};
 
-		fetch(`http://localhost:3000/events/${_id}`, {
+		fetch(`https://donation-x-server.vercel.app/events/${_id}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',

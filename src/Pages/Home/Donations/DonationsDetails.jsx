@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
@@ -21,7 +19,7 @@ const DonationsDetails = () => {
 	};
 
 	const handleSelectedEvent = (id) => {
-		fetch('http://localhost:3000/selected-events', {
+		fetch('https://donation-x-server.vercel.app/selected-events', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',

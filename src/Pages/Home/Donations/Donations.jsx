@@ -9,22 +9,22 @@ const Donations = () => {
 	const [input, setInput] = useState('');
 	const [count, setCount] = useState(0);
 	const [page, setPage] = useState(0);
-	const [size, setSize] = useState(6);
+	const [size, setSize] = useState(9);
 	const pages = Math.ceil(count / size);
 
 	const handleInput = (text) => {
-		text.toLowerCase()
-		setInput(text)
+		text.toLowerCase();
+		setInput(text);
 	};
 
 	useEffect(() => {
-		fetch(`http://localhost:3000/events?page=${page}&size=${size}&title=${input}`)
+		fetch(`https://donation-x-server.vercel.app/events?page=${page}&size=${size}&title=${input}`)
 			.then((res) => res.json())
 			.then((data) => {
 				setEvents(data.events);
 				setCount(data.count);
 			});
-	}, [page, size,input]);
+	}, [page, size, input]);
 
 	return (
 		<div>
@@ -40,12 +40,12 @@ const Donations = () => {
 				</div>
 			</div>
 
-			<div className="flex space-x-5 w-2/4 justify-center mx-auto my-5">
+			<div className="flex space-x-5 w-2/4 justify-center mx-auto my-5 space-y-5 md:space-y-0 flex-col md:flex-row">
 				{[...Array(pages).keys()].map((number) => (
 					<button
 						key={number}
 						className={`px-12 btn-primary btn text-white font-semibold ${
-							page === number ? 'bg-orange-500 font-bold text-4xl' : ''
+							page === number ? 'bg-yellow-700 font-bold text-3xl' : ''
 						}`}
 						onClick={() => setPage(number)}>
 						{number + 1}

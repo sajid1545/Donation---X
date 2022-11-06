@@ -27,7 +27,7 @@ const PrivateAdminRoute = ({ children }) => {
 	if (user?.email === 'sajid1@gmail.com') {
 		return children;
 	} else {
-		toast.error('Only admin can access this');
+		toast.error('Only admin can access this page');
 		return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 	}
 };

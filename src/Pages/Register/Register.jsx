@@ -1,5 +1,4 @@
-import React from 'react';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { setAuthToken } from '../../api/Auth';
@@ -36,7 +35,7 @@ const Register = () => {
 				// toast.success('Registered user successfully');
 				// navigate(from, { replace: true });
 
-				fetch('http://localhost:3000/volunteers', {
+				fetch('https://donation-x-server.vercel.app/volunteers', {
 					method: 'POST',
 					headers: {
 						'content-type': 'application/json',

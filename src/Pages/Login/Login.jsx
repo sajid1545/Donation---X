@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
-import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { setAuthToken } from '../../api/Auth';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Login = () => {
 	const { login } = useContext(AuthContext);
@@ -27,7 +26,7 @@ const Login = () => {
 				};
 
 				// get jwt token
-				fetch('http://localhost:3000/jwt', {
+				fetch('https://donation-x-server.vercel.app/jwt', {
 					method: 'POST',
 					headers: {
 						'content-type': 'application/json',

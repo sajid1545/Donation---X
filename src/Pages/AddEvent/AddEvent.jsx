@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 
 const AddEvent = () => {
@@ -18,7 +18,7 @@ const AddEvent = () => {
 			description,
 		};
 
-		fetch('http://localhost:3000/events', {
+		fetch('https://donation-x-server.vercel.app/events', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',

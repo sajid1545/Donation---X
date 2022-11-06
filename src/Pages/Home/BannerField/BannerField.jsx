@@ -6,7 +6,7 @@ const BannerField = ({handleInput}) => {
 			<div>
 				<h1 className="text-4xl text-center font-bold mb-0">Help all the people in need</h1>
 			</div>
-			<div className="w-2/4 mx-auto my-5 flex">
+			<div className="w-2/4 mx-auto my-5 hidden md:flex">
 				<div className="w-full mx-auto">
 					<div className="relative">
 						<span className="absolute inset-y-0 left-0 flex items-center pl-3">
