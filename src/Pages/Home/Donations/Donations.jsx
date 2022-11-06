@@ -6,21 +6,30 @@ import DonationCard from './DonationCard';
 
 const Donations = () => {
 	const [events, setEvents] = useState([]);
+	const [input, setInput] = useState('');
+	const [count, setCount] = useState(0);
+	const [page, setPage] = useState(0);
+	const [size, setSize] = useState(6);
+	const pages = Math.ceil(count / size);
 
-	const [page,setPage] = useState(0);
-	const [size,setSize] = useState(10);
-
+	const handleInput = (text) => {
+		text.toLowerCase()
+		setInput(text)
+	};
 
 	useEffect(() => {
-		fetch('http://localhost:3000/events')
+		fetch(`http://localhost:3000/events?page=${page}&size=${size}&title=${input}`)
 			.then((res) => res.json())
-			.then((data) => setEvents(data));
-	}, []);
+			.then((data) => {
+				setEvents(data.events);
+				setCount(data.count);
+			});
+	}, [page, size,input]);
 
 	return (
 		<div>
 			<div>
-				<BannerField />
+				<BannerField handleInput={handleInput} />
 			</div>
 
 			<div>
@@ -29,6 +38,19 @@ const Donations = () => {
 						<DonationCard key={event._id} event={event} />
 					))}
 				</div>
+			</div>
+
+			<div className="flex space-x-5 w-2/4 justify-center mx-auto my-5">
+				{[...Array(pages).keys()].map((number) => (
+					<button
+						key={number}
+						className={`px-12 btn-primary btn text-white font-semibold ${
+							page === number ? 'bg-orange-500 font-bold text-4xl' : ''
+						}`}
+						onClick={() => setPage(number)}>
+						{number + 1}
+					</button>
+				))}
 			</div>
 		</div>
 	);

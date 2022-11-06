@@ -2,13 +2,15 @@ import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import { toast } from 'react-toastify';
-import { Link, useLocation, useNavigation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 	const { login } = useContext(AuthContext);
 
 	const location = useLocation();
-	const navigate = useNavigation();
+	const navigate = useNavigate();
+
+	const from = location.state?.from?.pathname || '/';
 
 	const handleLogin = (event) => {
 		event.preventDefault();
@@ -19,7 +21,24 @@ const Login = () => {
 		login(email, password)
 			.then((result) => {
 				const user = result.user;
-				toast.success('Successfully logged in');
+				const currentUser = {
+					email: user?.email,
+				};
+
+				fetch('http://localhost:3000/jwt', {
+					method: 'POST',
+					headers: {
+						'content-type': 'application/json',
+					},
+					body: JSON.stringify(currentUser),
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data.token);
+						toast.success('Successfully logged in');
+						localStorage.setItem('donate-token', data.token);
+						navigate(from, { replace: true });
+					});
 			})
 			.catch((err) => {
 				console.log(err);

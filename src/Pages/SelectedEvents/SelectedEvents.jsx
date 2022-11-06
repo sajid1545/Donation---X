@@ -5,11 +5,20 @@ import { toast } from 'react-toastify';
 
 const SelectedEvents = () => {
 	const [selectedEvents, setSelectedEvents] = useState([]);
-	const { user } = useContext(AuthContext);
+	const { user, logOut } = useContext(AuthContext);
 
 	useEffect(() => {
-		fetch(`http://localhost:3000/selected-events?email=${user?.email}`)
-			.then((res) => res.json())
+		fetch(`http://localhost:3000/selected-events?email=${user?.email}`, {
+			headers: {
+				authorization: `Bearer ${localStorage.getItem('donate-token')}`,
+			},
+		})
+			.then((res) => {
+				if (res.status === 403 || res.status === 401) {
+					return logOut();
+				}
+				return res.json();
+			})
 			.then((data) => setSelectedEvents(data));
 	}, [user?.email]);
 

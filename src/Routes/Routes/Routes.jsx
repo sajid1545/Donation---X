@@ -1,9 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Main from '../../Layout/Main';
+import Admin from '../../Pages/Admin/Admin';
+import UpdateDonationEvent from '../../Pages/Home/Donations/UpdateDonationEvent';
 import Home from '../../Pages/Home/Home/Home';
 import Login from '../../Pages/Login/Login';
 import Register from '../../Pages/Register/Register';
 import SelectedEvents from '../../Pages/SelectedEvents/SelectedEvents';
+import RightSideBar from '../../Pages/Shared/RighSideBar/RightSideBar';
+import PrivateRoutes from '../PrivateRoutes/PrivateRoutes';
 import AddEvent from './../../Pages/AddEvent/AddEvent';
 import DonationsDetails from './../../Pages/Home/Donations/DonationsDetails';
 
@@ -16,10 +20,14 @@ export const router = createBrowserRouter([
 				path: '/',
 				element: <Home />,
 			},
-			{
-				path: '/add-event',
-				element: <AddEvent />,
-			},
+			// {
+			// 	path: '/add-event',
+			// 	element: (
+			// 		<PrivateRoutes>
+			// 			<AddEvent />
+			// 		</PrivateRoutes>
+			// 	),
+			// },
 			{
 				path: '/login',
 				element: <Login />,
@@ -30,12 +38,39 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/eventDetails/:id',
-				element: <DonationsDetails />,
+				element: (
+					<PrivateRoutes>
+						<DonationsDetails />
+					</PrivateRoutes>
+				),
 				loader: ({ params }) => fetch(`http://localhost:3000/events/${params.id}`),
 			},
 			{
 				path: '/selected-events',
-				element: <SelectedEvents />,
+				element: (
+					<PrivateRoutes>
+						<SelectedEvents />
+					</PrivateRoutes>
+				),
+			},
+			{
+				path: '/update-event/:id',
+				element: <UpdateDonationEvent />,
+				loader: ({ params }) => fetch(`http://localhost:3000/events/${params.id}`),
+			},
+		],
+	},
+	{
+		path: '/admin',
+		element: (
+			<PrivateRoutes>
+				<Admin />
+			</PrivateRoutes>
+		),
+		children: [
+			{
+				path: '/admin/add-event',
+				element: <AddEvent />,
 			},
 		],
 	},

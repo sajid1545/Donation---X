@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
@@ -10,7 +10,7 @@ const DonationsDetails = () => {
 
 	const { user } = useContext(AuthContext);
 
-	const { eventName, photoURL, date, description } = event;
+	const { eventName, photoURL, date, description ,_id} = event;
 
 	const selectedEvent = {
 		eventName,
@@ -20,9 +20,7 @@ const DonationsDetails = () => {
 		email: user?.email,
 	};
 
-
 	const handleSelectedEvent = (id) => {
-		
 		fetch('http://localhost:3000/selected-events', {
 			method: 'POST',
 			headers: {
@@ -59,14 +57,27 @@ const DonationsDetails = () => {
 
 					<p className="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">{description}</p>
 
-					<button
-						onClick={() => handleSelectedEvent(selectedEvent)}
-						className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
-						href="/download">
-						<span className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent">
-							Select Event
-						</span>
-					</button>
+					<div className="flex justify-between">
+						<button
+							onClick={() => handleSelectedEvent(selectedEvent)}
+							className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
+							href="/download">
+							<span className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent">
+								Select Event
+							</span>
+						</button>
+						<Link to={`/update-event/${_id}`}>
+							<p>
+								<button
+									className="inline-block rounded bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
+									href="/download">
+									<span className="block rounded-sm bg-white px-8 py-3 text-sm font-medium hover:bg-transparent">
+										Update
+									</span>
+								</button>
+							</p>
+						</Link>
+					</div>
 				</div>
 			</article>
 		</div>

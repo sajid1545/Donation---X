@@ -5,26 +5,19 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 const Header = () => {
 	const { user, logOut } = useContext(AuthContext);
 
+	const handleLogout = () => {
+		logOut().then().catch();
+		localStorage.removeItem('donate-token');
+	};
+
 	const menuItems = (
 		<>
-			<li className="font-semibold">
-				<Link to="/add-event">Events</Link>
-			</li>
+			
 			{user?.uid ? (
 				<>
 					<li className="font-semibold">
-						<Link to="/register">
-							<span className="">Register</span>
-						</Link>
-					</li>
-					<li className="font-semibold">
-						<Link to="/admin">
-							<span className="">Admin</span>
-						</Link>
-					</li>
-					<li className="font-semibold">
 						<Link>
-							<button onClick={logOut} className="">
+							<button onClick={handleLogout} className="">
 								LogOut
 							</button>
 						</Link>
@@ -32,6 +25,11 @@ const Header = () => {
 					<li className="font-bold">
 						<Link to="/selected-events">
 							<span className="">{user?.displayName}</span>
+						</Link>
+					</li>
+					<li className="font-semibold">
+						<Link to="/admin">
+							<span className="">Admin</span>
 						</Link>
 					</li>
 				</>
