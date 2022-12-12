@@ -14,13 +14,13 @@ const Header = () => {
 		<>
 			{user?.uid ? (
 				<>
-					<button onClick={handleLogout} className="font-semibold">
-						<Link>LogOut</Link>
-					</button>
 					<button className="font-bold">
 						<Link to="/selected-events">
-							<span className="">{user?.displayName}</span>
+							<span className="">selected events</span>
 						</Link>
+					</button>
+					<button onClick={handleLogout} className="font-semibold">
+						<Link>LogOut</Link>
 					</button>
 
 					<Link to="/admin">
